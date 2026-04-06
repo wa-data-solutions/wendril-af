@@ -123,7 +123,7 @@ export default function Home() {
         </p>
 
         <a
-          href="https://www.linkedin.com"
+          href="https://www.linkedin.com/in/wendril-ferreira/"
           target="_blank"
           className="px-8 py-3 bg-white text-black rounded-full font-semibold hover:opacity-80 transition"
         >
