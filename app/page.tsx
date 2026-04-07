@@ -129,6 +129,97 @@ export default function Home() {
 
       </section>
 
+      {/* ================= CASE 1 ================= */}
+      <section ref={ref1} className="py-32 px-6 max-w-6xl mx-auto">
+
+        <h2 className="text-3xl font-bold mb-6">
+          Plataforma de Dados Multisource
+        </h2>
+
+        <p className="text-gray-400 mb-12 max-w-3xl">
+          Integração de múltiplas fontes com Pentaho, consolidação em Data Warehouse
+          e disponibilização via Microsoft Fabric para consumo analítico em Power BI.
+        </p>
+
+        <div className="relative">
+
+          <div className="flex flex-wrap md:flex-nowrap justify-between gap-6 text-center">
+            {[
+              "Fontes",
+              "ETL",
+              "DW",
+              "Data Marts",
+              "Fabric",
+              "Power BI",
+            ].map((step, i) => (
+              <div key={i} className="w-40 p-4 bg-white/5 border border-gray-800 rounded-xl">
+                {step}
+              </div>
+            ))}
+          </div>
+
+          <div className="hidden md:block absolute top-[80px] left-0 right-0 h-[2px] bg-gray-800"></div>
+
+          <motion.div
+            style={{ scaleX: progress1 }}
+            className="hidden md:block absolute top-[80px] left-0 h-[2px] bg-white origin-left"
+          />
+
+          <motion.div
+            style={{ x: x1 }}
+            className="hidden md:flex absolute top-[70px]"
+          >
+            ➜
+          </motion.div>
+
+        </div>
+
+      </section>
+
+      {/* ================= CASE 2 ================= */}
+      <section ref={ref2} className="py-32 px-6 max-w-6xl mx-auto">
+
+        <h2 className="text-3xl font-bold mb-6">
+          Arquitetura Moderna com Microsoft Fabric
+        </h2>
+
+        <p className="text-gray-400 mb-12 max-w-3xl">
+          Ingestão via Dataverse, armazenamento em Lakehouse e modelagem analítica
+          para consumo direto em Power BI.
+        </p>
+
+        <div className="relative">
+
+          <div className="flex flex-wrap md:flex-nowrap justify-between gap-6 text-center">
+            {[
+              "Dataverse",
+              "Ingestão",
+              "Lakehouse",
+              "DW",
+              "Power BI",
+            ].map((step, i) => (
+              <div key={i} className="w-40 p-4 bg-white/5 border border-gray-800 rounded-xl">
+                {step}
+              </div>
+            ))}
+          </div>
+
+          <div className="hidden md:block absolute top-[80px] left-0 right-0 h-[2px] bg-gray-800"></div>
+
+          <motion.div
+            style={{ scaleX: progress2 }}
+            className="hidden md:block absolute top-[80px] left-0 h-[2px] bg-white origin-left"
+          />
+
+          <motion.div
+            style={{ x: x2 }}
+            className="hidden md:flex absolute top-[70px]"
+          >
+            ➜
+          </motion.div>
+
+        </div>
+
       {/* CTA PRINCIPAL */}
       <section id="diagnostico" className="py-32 text-center">
 
@@ -142,7 +233,7 @@ export default function Home() {
         </p>
 
         <a
-          href="https://www.linkedin.com/in/seu-linkedin-aqui/"
+          href="https://www.linkedin.com/in/wendril-ferreira/"
           target="_blank"
           className="px-10 py-4 bg-white text-black rounded-full font-medium hover:scale-105 transition"
         >
