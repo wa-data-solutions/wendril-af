@@ -16,47 +16,36 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://wendril.af"),
 
   title: {
-    default: "wendril.af",
-    template: "%s | wendril.af",
+    default: "WENDRIL.AF",
+    template: "%s | WENDRIL.AF",
   },
 
   description:
-    "Wendril Ferreira — Consultoria em Engenharia de Dados, Microsoft Fabric, Data Warehouse e plataformas analíticas modernas.",
-
-  keywords: [
-    "engenharia de dados",
-    "data engineer",
-    "microsoft fabric",
-    "data warehouse",
-    "power bi",
-    "etl",
-    "consultoria dados",
-    "big data",
-  ],
-
-  authors: [{ name: "Wendril Ferreira" }],
-  creator: "Wendril Ferreira",
+    "Wendril Ferreira — Consultoria em Engenharia de Dados, Microsoft Fabric e plataformas analíticas.",
 
   openGraph: {
-    title: "wendril.af",
+    title: "WENDRIL.AF",
     description:
-      "Consultoria em Engenharia de Dados, Microsoft Fabric e soluções analíticas.",
+      "Engenharia de Dados • Microsoft Fabric • Data Platforms",
     url: "https://wendril.af",
-    siteName: "wendril.af",
+    siteName: "WENDRIL.AF",
     locale: "pt_BR",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "wendril.af",
+    title: "WENDRIL.AF",
     description:
       "Engenharia de Dados • Microsoft Fabric • Data Platforms",
-  },
-
-  robots: {
-    index: true,
-    follow: true,
+    images: ["/og-image.png"],
   },
 };
 
