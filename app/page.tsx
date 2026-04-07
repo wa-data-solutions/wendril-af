@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useMotionValue,
-} from "framer-motion";
-import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 
 const clients = [
   "CAU-SP",
@@ -18,220 +12,110 @@ const clients = [
 ];
 
 export default function Home() {
-  const ref1 = useRef(null);
-  const ref2 = useRef(null);
-
-  const { scrollYProgress: progress1 } = useScroll({
-    target: ref1,
-    offset: ["start center", "end center"],
-  });
-
-  const { scrollYProgress: progress2 } = useScroll({
-    target: ref2,
-    offset: ["start center", "end center"],
-  });
-
-  const x1 = useTransform(progress1, [0, 1], ["0%", "100%"]);
-  const x2 = useTransform(progress2, [0, 1], ["0%", "100%"]);
-
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  useEffect(() => {
-    const move = (e: MouseEvent) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
-    };
-    window.addEventListener("mousemove", move);
-    return () => window.removeEventListener("mousemove", move);
-  }, []);
-
   return (
-    <main className="bg-black text-white overflow-x-hidden relative">
+    <main className="bg-black text-white">
 
-      {/* GLOW GLOBAL */}
-      <motion.div
-        className="pointer-events-none fixed w-[500px] h-[500px] rounded-full blur-[140px] opacity-20 bg-white"
-        style={{
-          x: mouseX,
-          y: mouseY,
-          translateX: "-50%",
-          translateY: "-50%",
-        }}
-      />
-
-      {/* HERO PREMIUM */}
+      {/* HERO */}
       <section className="min-h-screen flex flex-col justify-center items-center text-center px-6">
 
-        {/* BADGE */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-6 px-4 py-1 border border-gray-700 rounded-full text-xs text-gray-400 tracking-widest"
-        >
-          DATA ENGINEER • CONSULTANT
-        </motion.div>
+        <p className="text-xs tracking-[0.4em] text-gray-500 mb-6">
+          WENDRIL.AF
+        </p>
 
-        {/* NOME PREMIUM */}
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-3xl md:text-5xl font-semibold tracking-wide mb-6 bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text text-transparent"
-        >
-          WENDRIL ARAUJO FERREIRA
-        </motion.h1>
+        <h1 className="text-5xl md:text-7xl font-bold max-w-4xl">
+          Seus dados estão te atrasando.
+        </h1>
 
-        {/* HEADLINE */}
-        <motion.h2
-          initial={{ opacity: 0, y: 60 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="text-5xl md:text-7xl font-bold max-w-4xl leading-tight"
-        >
-          Dados não são custo.{" "}
-          <span className="bg-gradient-to-r from-white to-gray-500 bg-clip-text text-transparent">
-            São vantagem competitiva.
-          </span>
-        </motion.h2>
+        <p className="mt-6 text-gray-400 max-w-xl text-lg">
+          Eu estruturo plataformas de dados que reduzem custo, eliminam retrabalho
+          e aceleram decisões estratégicas.
+        </p>
 
-        {/* SUB */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="mt-6 text-gray-400 max-w-xl"
+        <a
+          href="#diagnostico"
+          className="mt-10 px-8 py-3 bg-white text-black rounded-full font-medium"
         >
-          Estruturo plataformas de dados escaláveis, reduzindo custo e acelerando decisões estratégicas.
-        </motion.p>
+          Solicitar diagnóstico gratuito
+        </a>
 
       </section>
 
-      {/* CLIENTES */}
-      <section className="py-20 text-center border-t border-gray-800">
-        <h2 className="mb-10 text-xl text-gray-400">
-          Organizações que confiaram no meu trabalho
-        </h2>
+      {/* PROVA */}
+      <section className="py-24 text-center border-t border-gray-800">
+        <p className="text-gray-500 mb-10">
+          Experiência em ambientes críticos
+        </p>
 
         <div className="flex flex-wrap justify-center gap-10">
           {clients.map((c, i) => (
-            <span key={i} className="text-gray-500 hover:text-white transition">
+            <span key={i} className="text-gray-500">
               {c}
             </span>
           ))}
         </div>
       </section>
 
-      {/* ================= CASE 1 ================= */}
-      <section ref={ref1} className="py-32 px-6 max-w-6xl mx-auto">
+      {/* DOR */}
+      <section className="py-32 text-center max-w-4xl mx-auto px-6">
 
-        <h2 className="text-3xl font-bold mb-6">
-          Plataforma de Dados Multisource
+        <h2 className="text-3xl font-bold mb-10">
+          Se você se identifica com isso, você tem um problema de dados
         </h2>
 
-        <p className="text-gray-400 mb-12 max-w-3xl">
-          Integração de múltiplas fontes com Pentaho, consolidação em Data Warehouse
-          e disponibilização via Microsoft Fabric para consumo analítico em Power BI.
-        </p>
-
-        <div className="relative">
-
-          <div className="flex flex-wrap md:flex-nowrap justify-between gap-6 text-center">
-            {[
-              "Fontes",
-              "ETL",
-              "DW",
-              "Data Marts",
-              "Fabric",
-              "Power BI",
-            ].map((step, i) => (
-              <div key={i} className="w-40 p-4 bg-white/5 border border-gray-800 rounded-xl">
-                {step}
-              </div>
-            ))}
-          </div>
-
-          <div className="hidden md:block absolute top-[80px] left-0 right-0 h-[2px] bg-gray-800"></div>
-
-          <motion.div
-            style={{ scaleX: progress1 }}
-            className="hidden md:block absolute top-[80px] left-0 h-[2px] bg-white origin-left"
-          />
-
-          <motion.div
-            style={{ x: x1 }}
-            className="hidden md:flex absolute top-[70px]"
-          >
-            ➜
-          </motion.div>
-
+        <div className="space-y-6 text-gray-400">
+          <p>• Relatórios lentos ou inconsistentes</p>
+          <p>• Dados espalhados em múltiplas fontes</p>
+          <p>• Falta de confiança nas informações</p>
+          <p>• Alto custo operacional com dados</p>
         </div>
 
       </section>
 
-      {/* ================= CASE 2 ================= */}
-      <section ref={ref2} className="py-32 px-6 max-w-6xl mx-auto">
+      {/* SOLUÇÃO */}
+      <section className="py-32 bg-gray-900 text-center px-6">
 
-        <h2 className="text-3xl font-bold mb-6">
-          Arquitetura Moderna com Microsoft Fabric
+        <h2 className="text-3xl font-bold mb-12">
+          Como eu resolvo isso
         </h2>
 
-        <p className="text-gray-400 mb-12 max-w-3xl">
-          Ingestão via Dataverse, armazenamento em Lakehouse e modelagem analítica
-          para consumo direto em Power BI.
-        </p>
-
-        <div className="relative">
-
-          <div className="flex flex-wrap md:flex-nowrap justify-between gap-6 text-center">
-            {[
-              "Dataverse",
-              "Ingestão",
-              "Lakehouse",
-              "DW",
-              "Power BI",
-            ].map((step, i) => (
-              <div key={i} className="w-40 p-4 bg-white/5 border border-gray-800 rounded-xl">
-                {step}
-              </div>
-            ))}
-          </div>
-
-          <div className="hidden md:block absolute top-[80px] left-0 right-0 h-[2px] bg-gray-800"></div>
-
-          <motion.div
-            style={{ scaleX: progress2 }}
-            className="hidden md:block absolute top-[80px] left-0 h-[2px] bg-white origin-left"
-          />
-
-          <motion.div
-            style={{ x: x2 }}
-            className="hidden md:flex absolute top-[70px]"
-          >
-            ➜
-          </motion.div>
-
+        <div className="max-w-4xl mx-auto text-gray-400 space-y-6">
+          <p>Centralização de dados em arquitetura moderna</p>
+          <p>Automação de pipelines e ingestão</p>
+          <p>Modelagem analítica para tomada de decisão</p>
+          <p>Entrega pronta para consumo no Power BI</p>
         </div>
 
       </section>
 
-      {/* CTA */}
-      <section className="py-32 text-center">
+      {/* CTA PRINCIPAL */}
+      <section id="diagnostico" className="py-32 text-center">
+
         <h2 className="text-4xl font-bold mb-6">
-          Vamos transformar seus dados em resultado
+          Diagnóstico gratuito da sua arquitetura de dados
         </h2>
+
+        <p className="text-gray-400 mb-10 max-w-xl mx-auto">
+          Em uma conversa de 30 minutos, vou identificar gargalos, riscos e oportunidades
+          na sua plataforma de dados.
+        </p>
 
         <a
-          href="https://www.linkedin.com/in/wendril-ferreira/"
+          href="https://cal.com" // depois você troca
           target="_blank"
-          className="px-10 py-4 bg-white text-black rounded-full font-semibold hover:opacity-80 transition"
+          className="px-10 py-4 bg-white text-black rounded-full font-medium"
         >
-          Falar comigo
+          Agendar conversa
         </a>
+
+      </section>
+
+      {/* URGÊNCIA */}
+      <section className="py-20 text-center text-gray-500">
+        <p>Atendo um número limitado de projetos por mês.</p>
       </section>
 
       <footer className="text-center py-10 text-gray-600 text-sm">
-        © 2026 Wendril Ferreira
+        © 2026 WENDRIL.AF
       </footer>
 
     </main>
