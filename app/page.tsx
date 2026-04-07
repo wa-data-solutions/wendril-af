@@ -8,15 +8,32 @@ import {
 } from "framer-motion";
 import { useEffect, useRef } from "react";
 
-export default function Home() {
-  const ref = useRef(null);
+const clients = [
+  "CAU-SP",
+  "CDHU-SP",
+  "DETRAN-SP",
+  "SEFAZ-RS",
+  "SESI SENAI-AP",
+  "TJ-CE",
+];
 
-  const { scrollYProgress } = useScroll({
-    target: ref,
+export default function Home() {
+  const ref1 = useRef(null);
+  const ref2 = useRef(null);
+
+  const { scrollYProgress: progress1 } = useScroll({
+    target: ref1,
     offset: ["start center", "end center"],
   });
 
-  // mouse glow
+  const { scrollYProgress: progress2 } = useScroll({
+    target: ref2,
+    offset: ["start center", "end center"],
+  });
+
+  const x1 = useTransform(progress1, [0, 1], ["0%", "100%"]);
+  const x2 = useTransform(progress2, [0, 1], ["0%", "100%"]);
+
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -29,27 +46,12 @@ export default function Home() {
     return () => window.removeEventListener("mousemove", move);
   }, []);
 
-  // magnet button
-  const btnX = useMotionValue(0);
-  const btnY = useMotionValue(0);
-
-  const handleMove = (e: any) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    btnX.set((e.clientX - rect.left - rect.width / 2) * 0.3);
-    btnY.set((e.clientY - rect.top - rect.height / 2) * 0.3);
-  };
-
-  const handleLeave = () => {
-    btnX.set(0);
-    btnY.set(0);
-  };
-
   return (
     <main className="bg-black text-white overflow-x-hidden relative">
 
-      {/* GLOW GLOBAL */}
+      {/* GLOW */}
       <motion.div
-        className="pointer-events-none fixed top-0 left-0 w-[500px] h-[500px] rounded-full blur-[140px] opacity-20 bg-white z-0"
+        className="pointer-events-none fixed w-[500px] h-[500px] rounded-full blur-[140px] opacity-20 bg-white"
         style={{
           x: mouseX,
           y: mouseY,
@@ -60,148 +62,150 @@ export default function Home() {
 
       {/* HERO */}
       <section className="min-h-screen flex flex-col justify-center items-center text-center px-6">
-
-        <h1 className="text-xs tracking-[0.3em] text-gray-500 mb-4">
-          WENDRIL ARAUJO FERREIRA
+        <h1 className="text-5xl md:text-7xl font-bold max-w-4xl">
+          Dados não são custo. São vantagem competitiva.
         </h1>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 60 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="text-5xl md:text-7xl font-bold max-w-4xl leading-tight"
-        >
-          Transformo dados em{" "}
-          <span className="bg-gradient-to-r from-white to-gray-500 bg-clip-text text-transparent">
-            vantagem competitiva
-          </span>
-        </motion.h2>
-
         <p className="mt-6 text-gray-400 max-w-xl">
-          Engenharia de Dados • Microsoft Fabric • SQL
+          Engenharia de Dados • Microsoft Fabric • Data Platforms
+        </p>
+      </section>
+
+      {/* CLIENTES */}
+      <section className="py-20 text-center border-t border-gray-800">
+        <h2 className="mb-10 text-xl text-gray-400">
+          Organizações que confiaram no meu trabalho
+        </h2>
+
+        <div className="flex flex-wrap justify-center gap-10">
+          {clients.map((c, i) => (
+            <span key={i} className="text-gray-500 hover:text-white">
+              {c}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      {/* ================= CASE 1 ================= */}
+      <section ref={ref1} className="py-32 px-6 max-w-6xl mx-auto">
+
+        <h2 className="text-3xl font-bold mb-6">
+          Case 1 — Plataforma de Dados Multisource
+        </h2>
+
+        <p className="text-gray-400 mb-12 max-w-3xl">
+          Pipeline ETL orquestrado com Pentaho consumindo múltiplas fontes
+          (PostgreSQL, Oracle, SQL Server, Trino, MariaDB, CSV e Excel),
+          consolidando dados em Data Warehouse com Data Marts e disponibilização
+          via Microsoft Fabric para consumo no Power BI.
         </p>
 
-        {/* CTA MAGNÉTICO */}
-        <motion.a
-          href="https://www.linkedin.com/in/wendril-ferreira/"
-          target="_blank"
-          onMouseMove={handleMove}
-          onMouseLeave={handleLeave}
-          style={{ x: btnX, y: btnY }}
-          className="mt-10 px-10 py-4 bg-white text-black rounded-full font-semibold"
-        >
-          Falar comigo
-        </motion.a>
+        <div className="relative">
 
-      </section>
-
-      {/* PIPELINE SIMULATION */}
-      <section className="py-32 px-6 max-w-6xl mx-auto">
-
-        <h2 className="text-3xl font-bold text-center mb-16">
-          Pipeline de Dados em Ação
-        </h2>
-
-        <div className="grid md:grid-cols-4 gap-6">
-
-          {["API", "ETL", "Lakehouse", "BI"].map((step, i) => (
-            <motion.div
-              key={i}
-              whileHover={{ scale: 1.05 }}
-              className="p-6 rounded-xl bg-white/5 backdrop-blur-xl border border-gray-800"
-            >
-              <p className="text-sm text-gray-400 mb-2">Stage</p>
-              <h3 className="text-lg font-semibold">{step}</h3>
-
-              <motion.div
-                className="mt-4 h-2 bg-gray-800 rounded-full overflow-hidden"
+          {/* ETAPAS */}
+          <div className="flex flex-wrap md:flex-nowrap justify-between gap-6 text-center">
+            {[
+              "Fontes (DB + Files)",
+              "ETL (Pentaho)",
+              "Data Warehouse",
+              "Data Marts",
+              "Microsoft Fabric",
+              "Power BI",
+            ].map((step, i) => (
+              <div
+                key={i}
+                className="w-44 p-4 bg-white/5 border border-gray-800 rounded-xl"
               >
-                <motion.div
-                  className="h-full bg-white"
-                  animate={{ width: ["0%", "100%"] }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    delay: i * 0.3,
-                  }}
-                />
-              </motion.div>
-            </motion.div>
-          ))}
-
-        </div>
-
-      </section>
-
-      {/* DASHBOARD FAKE */}
-      <section className="py-32 bg-gray-900 px-6">
-
-        <h2 className="text-3xl font-bold text-center mb-16">
-          Impacto em Tempo Real
-        </h2>
-
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-
-          {[
-            { title: "Performance", value: "+42%" },
-            { title: "Custo", value: "-31%" },
-            { title: "Velocidade", value: "5.3x" },
-          ].map((item, i) => (
-            <motion.div
-              key={i}
-              whileHover={{ scale: 1.05 }}
-              className="p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-gray-800 text-center"
-            >
-              <p className="text-gray-400 mb-2">{item.title}</p>
-              <h3 className="text-4xl font-bold">{item.value}</h3>
-            </motion.div>
-          ))}
-
-        </div>
-
-      </section>
-
-      {/* STACK APPLE */}
-      <section className="h-[250vh] relative">
-
-        {["Dados", "Processamento", "Insights"].map((text, i) => (
-          <div
-            key={i}
-            className="sticky top-0 h-screen flex items-center justify-center"
-          >
-            <motion.div
-              className="w-[300px] h-[200px] bg-white/10 backdrop-blur-xl rounded-2xl flex items-center justify-center text-xl"
-              initial={{ scale: 1 }}
-              whileInView={{ scale: 0.9 }}
-            >
-              {text}
-            </motion.div>
+                {step}
+              </div>
+            ))}
           </div>
-        ))}
+
+          {/* LINHA */}
+          <div className="hidden md:block absolute top-[80px] left-0 right-0 h-[2px] bg-gray-800"></div>
+
+          {/* PROGRESS */}
+          <motion.div
+            style={{ scaleX: progress1 }}
+            className="hidden md:block absolute top-[80px] left-0 h-[2px] bg-white origin-left"
+          />
+
+          {/* SETA */}
+          <motion.div
+            style={{ x: x1 }}
+            className="hidden md:flex absolute top-[70px]"
+          >
+            ➜
+          </motion.div>
+
+        </div>
 
       </section>
 
-      {/* CTA FINAL */}
-      <section className="py-32 text-center">
+      {/* ================= CASE 2 ================= */}
+      <section ref={ref2} className="py-32 px-6 max-w-6xl mx-auto">
 
-        <h2 className="text-4xl font-bold mb-6">
-          Pronto para escalar seus dados?
+        <h2 className="text-3xl font-bold mb-6">
+          Case 2 — Arquitetura Moderna com Microsoft Fabric
         </h2>
 
-        <motion.a
+        <p className="text-gray-400 mb-12 max-w-3xl">
+          Pipeline moderno utilizando Microsoft Fabric com ingestão de dados do
+          Dataverse (Dynamics), armazenamento em Lakehouse e construção de Data
+          Warehouse analítico para consumo via Power BI.
+        </p>
+
+        <div className="relative">
+
+          <div className="flex flex-wrap md:flex-nowrap justify-between gap-6 text-center">
+            {[
+              "Dataverse",
+              "Ingestão (Fabric)",
+              "Lakehouse",
+              "Data Warehouse",
+              "Power BI",
+            ].map((step, i) => (
+              <div
+                key={i}
+                className="w-44 p-4 bg-white/5 border border-gray-800 rounded-xl"
+              >
+                {step}
+              </div>
+            ))}
+          </div>
+
+          <div className="hidden md:block absolute top-[80px] left-0 right-0 h-[2px] bg-gray-800"></div>
+
+          <motion.div
+            style={{ scaleX: progress2 }}
+            className="hidden md:block absolute top-[80px] left-0 h-[2px] bg-white origin-left"
+          />
+
+          <motion.div
+            style={{ x: x2 }}
+            className="hidden md:flex absolute top-[70px]"
+          >
+            ➜
+          </motion.div>
+
+        </div>
+
+      </section>
+
+      {/* CTA */}
+      <section className="py-32 text-center">
+        <h2 className="text-4xl font-bold mb-6">
+          Vamos construir sua plataforma de dados
+        </h2>
+
+        <a
           href="https://www.linkedin.com/in/wendril-ferreira/"
           target="_blank"
-          whileHover={{ scale: 1.05 }}
           className="px-10 py-4 bg-white text-black rounded-full font-semibold"
         >
-          Vamos conversar
-        </motion.a>
-
+          Falar comigo
+        </a>
       </section>
-
-      <footer className="text-center py-10 text-gray-600 text-sm">
-        © 2026 Wendril Ferreira
-      </footer>
 
     </main>
   );
