@@ -1,207 +1,202 @@
 "use client";
 
-import { motion } from "framer-motion";
-
-const clients = [
-  "CAU-SP",
-  "CDHU-SP",
-  "DETRAN-SP",
-  "SEFAZ-RS",
-  "SESI SENAI-AP",
-  "TJ-CE",
-];
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionValue,
+} from "framer-motion";
+import { useEffect, useRef } from "react";
 
 export default function Home() {
+  const ref = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start center", "end center"],
+  });
+
+  // mouse glow
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  useEffect(() => {
+    const move = (e: MouseEvent) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+    };
+    window.addEventListener("mousemove", move);
+    return () => window.removeEventListener("mousemove", move);
+  }, []);
+
+  // magnet button
+  const btnX = useMotionValue(0);
+  const btnY = useMotionValue(0);
+
+  const handleMove = (e: any) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    btnX.set((e.clientX - rect.left - rect.width / 2) * 0.3);
+    btnY.set((e.clientY - rect.top - rect.height / 2) * 0.3);
+  };
+
+  const handleLeave = () => {
+    btnX.set(0);
+    btnY.set(0);
+  };
+
   return (
-    <main className="bg-black text-white overflow-x-hidden">
+    <main className="bg-black text-white overflow-x-hidden relative">
+
+      {/* GLOW GLOBAL */}
+      <motion.div
+        className="pointer-events-none fixed top-0 left-0 w-[500px] h-[500px] rounded-full blur-[140px] opacity-20 bg-white z-0"
+        style={{
+          x: mouseX,
+          y: mouseY,
+          translateX: "-50%",
+          translateY: "-50%",
+        }}
+      />
 
       {/* HERO */}
       <section className="min-h-screen flex flex-col justify-center items-center text-center px-6">
-        <h1 className="text-sm tracking-widest text-gray-400 mb-4">
+
+        <h1 className="text-xs tracking-[0.3em] text-gray-500 mb-4">
           WENDRIL ARAUJO FERREIRA
         </h1>
 
-        <h2 className="text-5xl md:text-7xl font-bold max-w-4xl">
-          Transformo dados em vantagem competitiva
-        </h2>
-
-        <p className="mt-6 text-gray-400 max-w-2xl text-lg">
-          Consultoria em Engenharia de Dados, Microsoft Fabric e SQL.
-        </p>
-      </section>
-
-import { motion } from "framer-motion";
-
-{/* CLIENTES */}
-<section className="py-28 text-center border-t border-gray-800">
-
-  <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.8 }}
-    viewport={{ once: true }}
-  >
-
-    {/* LABEL */}
-    <p className="text-xs tracking-[0.3em] text-gray-500 mb-4">
-      EXPERIÊNCIA PROFISSIONAL
-    </p>
-
-    {/* TÍTULO */}
-    <h2 className="text-2xl md:text-3xl font-semibold mb-12 bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text text-transparent">
-      Organizações que confiaram no meu trabalho
-    </h2>
-
-    {/* LISTA */}
-    <div className="flex flex-wrap justify-center gap-10 max-w-4xl mx-auto">
-
-      {clients.map((c, i) => (
-        <motion.span
-          key={i}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: i * 0.1 }}
-          viewport={{ once: true }}
-          className="text-gray-500 text-sm tracking-widest hover:text-white transition duration-300 cursor-default relative"
+        <motion.h2
+          initial={{ opacity: 0, y: 60 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="text-5xl md:text-7xl font-bold max-w-4xl leading-tight"
         >
-          {c}
+          Transformo dados em{" "}
+          <span className="bg-gradient-to-r from-white to-gray-500 bg-clip-text text-transparent">
+            vantagem competitiva
+          </span>
+        </motion.h2>
 
-          {/* glow sutil */}
-          <span className="absolute inset-0 blur-md opacity-0 hover:opacity-30 bg-white transition"></span>
-        </motion.span>
-      ))}
+        <p className="mt-6 text-gray-400 max-w-xl">
+          Engenharia de Dados • Microsoft Fabric • SQL
+        </p>
 
-    </div>
-
-  </motion.div>
-
-</section>
-
-      {/* ARQUITETURA STRIPE */}
-      <section className="py-24 px-6 max-w-6xl mx-auto">
-
-        <h2 className="text-3xl font-bold mb-12 text-center">
-          Como eu estruturo sua plataforma de dados
-        </h2>
-
-        <div className="relative">
-
-          {/* BOXES */}
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-center">
-            {["Fontes", "Ingestão", "Lakehouse", "Modelagem", "BI"].map((step, i) => (
-              <div
-                key={i}
-                className="p-4 border border-gray-700 rounded-lg w-40 bg-gray-900/40 backdrop-blur-sm"
-              >
-                {step}
-              </div>
-            ))}
-          </div>
-
-          {/* LINHA BASE */}
-          <div className="hidden md:block absolute left-0 right-0 top-[90px] h-[2px] bg-gray-800"></div>
-
-          {/* LINHA GLOW */}
-          <motion.div
-            className="hidden md:block absolute left-0 top-[90px] h-[2px] w-[200px]"
-            style={{
-              background: "linear-gradient(90deg, transparent, white, transparent)",
-              filter: "blur(2px)",
-            }}
-            animate={{ x: [0, 1000] }}
-            transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
-          />
-
-          {/* SETA COM TRAIL */}
-          <motion.div
-            className="hidden md:flex absolute top-[82px]"
-            animate={{ x: [0, 1000] }}
-            transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
-          >
-            <div className="flex items-center gap-1">
-
-              {/* TRAIL */}
-              <div className="w-10 h-[2px] bg-gradient-to-r from-transparent via-white to-transparent opacity-60"></div>
-
-              {/* SETA */}
-              <span className="text-white text-lg">➜</span>
-
-            </div>
-          </motion.div>
-
-        </div>
-
-      </section>
-
-      {/* VALOR */}
-      <section className="py-24 bg-gray-900 text-center">
-        <h2 className="text-3xl font-bold mb-12">
-          Quanto valor eu gero
-        </h2>
-
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto px-6">
-          <div>
-            <h3 className="text-4xl font-bold">+40%</h3>
-            <p className="text-gray-400 mt-2">Melhoria de performance</p>
-          </div>
-
-          <div>
-            <h3 className="text-4xl font-bold">-30%</h3>
-            <p className="text-gray-400 mt-2">Redução de custo</p>
-          </div>
-
-          <div>
-            <h3 className="text-4xl font-bold">+5x</h3>
-            <p className="text-gray-400 mt-2">Velocidade de processamento</p>
-          </div>
-        </div>
-      </section>
-
-      {/* SERVIÇOS */}
-      <section className="py-28 px-6 max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold mb-16 text-center">
-          Serviços de Consultoria
-        </h2>
-
-        <div className="grid md:grid-cols-3 gap-8">
-
-          <div className="p-6 border border-gray-800 rounded-2xl hover:border-white transition">
-            <h3 className="font-bold mb-4">Arquitetura de Dados</h3>
-            <p className="text-gray-400 text-sm">
-              Estruturação completa com Microsoft Fabric e Cloud.
-            </p>
-          </div>
-
-          <div className="p-6 border border-gray-800 rounded-2xl hover:border-white transition">
-            <h3 className="font-bold mb-4">Data Warehouse</h3>
-            <p className="text-gray-400 text-sm">
-              Modelagem e otimização SQL.
-            </p>
-          </div>
-
-          <div className="p-6 border border-gray-800 rounded-2xl hover:border-white transition">
-            <h3 className="font-bold mb-4">Pipelines</h3>
-            <p className="text-gray-400 text-sm">
-              ETL/ELT escalável e confiável.
-            </p>
-          </div>
-
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-28 text-center">
-        <h2 className="text-4xl font-bold mb-6">
-          Vamos construir sua solução de dados
-        </h2>
-
-        <a
+        {/* CTA MAGNÉTICO */}
+        <motion.a
           href="https://www.linkedin.com/in/wendril-ferreira/"
           target="_blank"
-          className="px-10 py-4 bg-white text-black rounded-full font-semibold hover:opacity-80 transition"
+          onMouseMove={handleMove}
+          onMouseLeave={handleLeave}
+          style={{ x: btnX, y: btnY }}
+          className="mt-10 px-10 py-4 bg-white text-black rounded-full font-semibold"
         >
           Falar comigo
-        </a>
+        </motion.a>
+
+      </section>
+
+      {/* PIPELINE SIMULATION */}
+      <section className="py-32 px-6 max-w-6xl mx-auto">
+
+        <h2 className="text-3xl font-bold text-center mb-16">
+          Pipeline de Dados em Ação
+        </h2>
+
+        <div className="grid md:grid-cols-4 gap-6">
+
+          {["API", "ETL", "Lakehouse", "BI"].map((step, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ scale: 1.05 }}
+              className="p-6 rounded-xl bg-white/5 backdrop-blur-xl border border-gray-800"
+            >
+              <p className="text-sm text-gray-400 mb-2">Stage</p>
+              <h3 className="text-lg font-semibold">{step}</h3>
+
+              <motion.div
+                className="mt-4 h-2 bg-gray-800 rounded-full overflow-hidden"
+              >
+                <motion.div
+                  className="h-full bg-white"
+                  animate={{ width: ["0%", "100%"] }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    delay: i * 0.3,
+                  }}
+                />
+              </motion.div>
+            </motion.div>
+          ))}
+
+        </div>
+
+      </section>
+
+      {/* DASHBOARD FAKE */}
+      <section className="py-32 bg-gray-900 px-6">
+
+        <h2 className="text-3xl font-bold text-center mb-16">
+          Impacto em Tempo Real
+        </h2>
+
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+
+          {[
+            { title: "Performance", value: "+42%" },
+            { title: "Custo", value: "-31%" },
+            { title: "Velocidade", value: "5.3x" },
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ scale: 1.05 }}
+              className="p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-gray-800 text-center"
+            >
+              <p className="text-gray-400 mb-2">{item.title}</p>
+              <h3 className="text-4xl font-bold">{item.value}</h3>
+            </motion.div>
+          ))}
+
+        </div>
+
+      </section>
+
+      {/* STACK APPLE */}
+      <section className="h-[250vh] relative">
+
+        {["Dados", "Processamento", "Insights"].map((text, i) => (
+          <div
+            key={i}
+            className="sticky top-0 h-screen flex items-center justify-center"
+          >
+            <motion.div
+              className="w-[300px] h-[200px] bg-white/10 backdrop-blur-xl rounded-2xl flex items-center justify-center text-xl"
+              initial={{ scale: 1 }}
+              whileInView={{ scale: 0.9 }}
+            >
+              {text}
+            </motion.div>
+          </div>
+        ))}
+
+      </section>
+
+      {/* CTA FINAL */}
+      <section className="py-32 text-center">
+
+        <h2 className="text-4xl font-bold mb-6">
+          Pronto para escalar seus dados?
+        </h2>
+
+        <motion.a
+          href="https://www.linkedin.com/in/wendril-ferreira/"
+          target="_blank"
+          whileHover={{ scale: 1.05 }}
+          className="px-10 py-4 bg-white text-black rounded-full font-semibold"
+        >
+          Vamos conversar
+        </motion.a>
+
       </section>
 
       <footer className="text-center py-10 text-gray-600 text-sm">
