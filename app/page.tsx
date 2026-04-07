@@ -49,7 +49,7 @@ export default function Home() {
   return (
     <main className="bg-black text-white overflow-x-hidden relative">
 
-      {/* GLOW */}
+      {/* GLOW GLOBAL */}
       <motion.div
         className="pointer-events-none fixed w-[500px] h-[500px] rounded-full blur-[140px] opacity-20 bg-white"
         style={{
@@ -60,15 +60,51 @@ export default function Home() {
         }}
       />
 
-      {/* HERO */}
+      {/* HERO PREMIUM */}
       <section className="min-h-screen flex flex-col justify-center items-center text-center px-6">
-        <h1 className="text-5xl md:text-7xl font-bold max-w-4xl">
-          Dados não são custo. São vantagem competitiva.
-        </h1>
 
-        <p className="mt-6 text-gray-400 max-w-xl">
-          Engenharia de Dados • Microsoft Fabric • Data Platforms
-        </p>
+        {/* BADGE */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-6 px-4 py-1 border border-gray-700 rounded-full text-xs text-gray-400 tracking-widest"
+        >
+          DATA ENGINEER • CONSULTANT
+        </motion.div>
+
+        {/* NOME PREMIUM */}
+        <motion.h1
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-3xl md:text-5xl font-semibold tracking-wide mb-6 bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text text-transparent"
+        >
+          WENDRIL ARAUJO FERREIRA
+        </motion.h1>
+
+        {/* HEADLINE */}
+        <motion.h2
+          initial={{ opacity: 0, y: 60 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="text-5xl md:text-7xl font-bold max-w-4xl leading-tight"
+        >
+          Dados não são custo.{" "}
+          <span className="bg-gradient-to-r from-white to-gray-500 bg-clip-text text-transparent">
+            São vantagem competitiva.
+          </span>
+        </motion.h2>
+
+        {/* SUB */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className="mt-6 text-gray-400 max-w-xl"
+        >
+          Estruturo plataformas de dados escaláveis, reduzindo custo e acelerando decisões estratégicas.
+        </motion.p>
+
       </section>
 
       {/* CLIENTES */}
@@ -79,7 +115,7 @@ export default function Home() {
 
         <div className="flex flex-wrap justify-center gap-10">
           {clients.map((c, i) => (
-            <span key={i} className="text-gray-500 hover:text-white">
+            <span key={i} className="text-gray-500 hover:text-white transition">
               {c}
             </span>
           ))}
@@ -90,47 +126,38 @@ export default function Home() {
       <section ref={ref1} className="py-32 px-6 max-w-6xl mx-auto">
 
         <h2 className="text-3xl font-bold mb-6">
-          Case 1 — Plataforma de Dados Multisource
+          Plataforma de Dados Multisource
         </h2>
 
         <p className="text-gray-400 mb-12 max-w-3xl">
-          Pipeline ETL orquestrado com Pentaho consumindo múltiplas fontes
-          (PostgreSQL, Oracle, SQL Server, Trino, MariaDB, CSV e Excel),
-          consolidando dados em Data Warehouse com Data Marts e disponibilização
-          via Microsoft Fabric para consumo no Power BI.
+          Integração de múltiplas fontes com Pentaho, consolidação em Data Warehouse
+          e disponibilização via Microsoft Fabric para consumo analítico em Power BI.
         </p>
 
         <div className="relative">
 
-          {/* ETAPAS */}
           <div className="flex flex-wrap md:flex-nowrap justify-between gap-6 text-center">
             {[
-              "Fontes (DB + Files)",
-              "ETL (Pentaho)",
-              "Data Warehouse",
+              "Fontes",
+              "ETL",
+              "DW",
               "Data Marts",
-              "Microsoft Fabric",
+              "Fabric",
               "Power BI",
             ].map((step, i) => (
-              <div
-                key={i}
-                className="w-44 p-4 bg-white/5 border border-gray-800 rounded-xl"
-              >
+              <div key={i} className="w-40 p-4 bg-white/5 border border-gray-800 rounded-xl">
                 {step}
               </div>
             ))}
           </div>
 
-          {/* LINHA */}
           <div className="hidden md:block absolute top-[80px] left-0 right-0 h-[2px] bg-gray-800"></div>
 
-          {/* PROGRESS */}
           <motion.div
             style={{ scaleX: progress1 }}
             className="hidden md:block absolute top-[80px] left-0 h-[2px] bg-white origin-left"
           />
 
-          {/* SETA */}
           <motion.div
             style={{ x: x1 }}
             className="hidden md:flex absolute top-[70px]"
@@ -146,13 +173,12 @@ export default function Home() {
       <section ref={ref2} className="py-32 px-6 max-w-6xl mx-auto">
 
         <h2 className="text-3xl font-bold mb-6">
-          Case 2 — Arquitetura Moderna com Microsoft Fabric
+          Arquitetura Moderna com Microsoft Fabric
         </h2>
 
         <p className="text-gray-400 mb-12 max-w-3xl">
-          Pipeline moderno utilizando Microsoft Fabric com ingestão de dados do
-          Dataverse (Dynamics), armazenamento em Lakehouse e construção de Data
-          Warehouse analítico para consumo via Power BI.
+          Ingestão via Dataverse, armazenamento em Lakehouse e modelagem analítica
+          para consumo direto em Power BI.
         </p>
 
         <div className="relative">
@@ -160,15 +186,12 @@ export default function Home() {
           <div className="flex flex-wrap md:flex-nowrap justify-between gap-6 text-center">
             {[
               "Dataverse",
-              "Ingestão (Fabric)",
+              "Ingestão",
               "Lakehouse",
-              "Data Warehouse",
+              "DW",
               "Power BI",
             ].map((step, i) => (
-              <div
-                key={i}
-                className="w-44 p-4 bg-white/5 border border-gray-800 rounded-xl"
-              >
+              <div key={i} className="w-40 p-4 bg-white/5 border border-gray-800 rounded-xl">
                 {step}
               </div>
             ))}
@@ -195,17 +218,21 @@ export default function Home() {
       {/* CTA */}
       <section className="py-32 text-center">
         <h2 className="text-4xl font-bold mb-6">
-          Vamos construir sua plataforma de dados
+          Vamos transformar seus dados em resultado
         </h2>
 
         <a
           href="https://www.linkedin.com/in/wendril-ferreira/"
           target="_blank"
-          className="px-10 py-4 bg-white text-black rounded-full font-semibold"
+          className="px-10 py-4 bg-white text-black rounded-full font-semibold hover:opacity-80 transition"
         >
           Falar comigo
         </a>
       </section>
+
+      <footer className="text-center py-10 text-gray-600 text-sm">
+        © 2026 Wendril Ferreira
+      </footer>
 
     </main>
   );
