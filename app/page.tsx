@@ -31,13 +31,28 @@ export default function Home() {
       </section>
 
       {/* CLIENTES */}
-      <section className="py-16 text-center border-t border-gray-800">
-        <div className="flex flex-wrap justify-center gap-6 text-gray-400 text-sm tracking-widest">
-          {clients.map((c, i) => (
-            <span key={i}>{c}</span>
-          ))}
-        </div>
-      </section>
+<section className="py-20 text-center border-t border-gray-800">
+
+  <h3 className="text-sm tracking-widest text-gray-500 mb-4">
+    EXPERIÊNCIA PROFISSIONAL
+  </h3>
+
+  <h2 className="text-2xl md:text-3xl font-semibold mb-8">
+    Empresas por onde atuei
+  </h2>
+
+  <div className="flex flex-wrap justify-center gap-6 text-gray-400 text-sm tracking-widest">
+    {clients.map((c, i) => (
+      <span
+        key={i}
+        className="hover:text-white transition"
+      >
+        {c}
+      </span>
+    ))}
+  </div>
+
+</section>
 
       {/* ARQUITETURA STRIPE */}
       <section className="py-24 px-6 max-w-6xl mx-auto">
