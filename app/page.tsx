@@ -3,66 +3,46 @@
 import { motion } from "framer-motion";
 
 const clients = [
-  "SEFAZ-RS",
-  "DETRAN-SP",
+  "CAU-SP",
   "CDHU-SP",
-  "TJ-CE",
+  "DETRAN-SP",
+  "SEFAZ-RS",
   "SESI SENAI-AP",
-];
-
-const cases = [
-  {
-    title: "Plataforma Moderna com Microsoft Fabric",
-    problem: "Dados descentralizados e baixa confiabilidade analítica.",
-    solution: "Arquitetura Lakehouse com ingestão, transformação e consumo via BI.",
-    impact: "Centralização dos dados e aceleração na tomada de decisão.",
-  },
+  "TJ-CE",
 ];
 
 export default function Home() {
   return (
-    <main className="bg-black text-white">
+    <main className="bg-black text-white overflow-x-hidden">
 
       {/* HERO */}
       <section className="min-h-screen flex flex-col justify-center items-center text-center px-6">
 
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-lg tracking-widest text-gray-400 mb-4"
-        >
+        <h1 className="text-sm tracking-widest text-gray-400 mb-4">
           WENDRIL ARAUJO FERREIRA
-        </motion.h1>
+        </h1>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-5xl md:text-7xl font-bold max-w-4xl"
-        >
+        <h2 className="text-5xl md:text-7xl font-bold max-w-4xl">
           Transformo dados em vantagem competitiva
-        </motion.h2>
+        </h2>
 
         <p className="mt-6 text-gray-400 max-w-2xl text-lg">
           Consultoria em Engenharia de Dados, Microsoft Fabric e SQL.
-          Crio plataformas de dados escaláveis com foco em performance,
-          governança e impacto real no negócio.
+          Crio plataformas escaláveis que reduzem custos, aumentam performance
+          e aceleram decisões estratégicas.
         </p>
 
         <a
-          href="#cases"
+          href="#services"
           className="mt-10 px-8 py-3 bg-white text-black rounded-full font-semibold"
         >
-          Ver Cases
+          Ver Serviços
         </a>
 
       </section>
 
       {/* CLIENTES */}
-      <section className="py-20 text-center border-t border-gray-800">
-        <p className="text-gray-500 mb-6 text-sm tracking-widest">
-          CLIENTES E EXPERIÊNCIA
-        </p>
-
+      <section className="py-16 text-center border-t border-gray-800">
         <div className="flex flex-wrap justify-center gap-6 text-gray-400 text-sm tracking-widest">
           {clients.map((c, i) => (
             <span key={i}>{c}</span>
@@ -70,105 +50,106 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CASES */}
-      <section id="cases" className="py-28 px-6 max-w-6xl mx-auto">
+      {/* ARQUITETURA ANIMADA */}
+      <section className="py-24 px-6 max-w-6xl mx-auto">
 
-        <h2 className="text-3xl font-bold mb-16 text-center">
-          Case em Destaque
+        <h2 className="text-3xl font-bold mb-12 text-center">
+          Como eu estruturo sua plataforma de dados
         </h2>
 
-        {cases.map((c, i) => (
-          <div key={i} className="space-y-10">
+        <div className="relative flex flex-col md:flex-row justify-between items-center gap-6">
 
-            {/* TEXTO */}
-            <div className="grid md:grid-cols-3 gap-6">
-
-              <div>
-                <h3 className="font-bold text-white">{c.title}</h3>
-              </div>
-
-              <div className="text-gray-400 text-sm">
-                <p><strong>Problema:</strong> {c.problem}</p>
-                <p className="mt-2"><strong>Solução:</strong> {c.solution}</p>
-              </div>
-
-              <div className="text-gray-300 text-sm">
-                <p><strong>Impacto:</strong> {c.impact}</p>
-              </div>
-
+          {["Fontes", "Ingestão", "Lakehouse", "Modelagem", "BI"].map((step, i) => (
+            <div key={i} className="p-4 border border-gray-700 rounded-lg text-center w-40">
+              {step}
             </div>
+          ))}
 
-            {/* ARQUITETURA VISUAL */}
-            <div className="mt-10 p-6 border border-gray-800 rounded-2xl bg-gray-900">
+          {/* LINHA */}
+          <div className="absolute top-1/2 left-0 w-full h-[2px] bg-gray-800 hidden md:block"></div>
 
-              <p className="text-gray-500 text-sm mb-6 text-center">
-                Arquitetura da Solução
-              </p>
+          {/* BOLINHA ANIMADA */}
+          <motion.div
+            animate={{ x: [0, 800] }}
+            transition={{ repeat: Infinity, duration: 5, ease: "linear" }}
+            className="hidden md:block absolute top-1/2 w-3 h-3 bg-white rounded-full"
+          />
 
-              <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-center text-sm">
-
-                <div className="p-4 border border-gray-700 rounded-lg">
-                  Fontes de Dados
-                  <br />
-                  (APIs, DBs)
-                </div>
-
-                <div className="text-gray-500">→</div>
-
-                <div className="p-4 border border-gray-700 rounded-lg">
-                  Ingestão
-                  <br />
-                  (ETL / Fabric)
-                </div>
-
-                <div className="text-gray-500">→</div>
-
-                <div className="p-4 border border-gray-700 rounded-lg">
-                  Lakehouse
-                </div>
-
-                <div className="text-gray-500">→</div>
-
-                <div className="p-4 border border-gray-700 rounded-lg">
-                  Modelagem
-                  <br />
-                  (SQL / DW)
-                </div>
-
-                <div className="text-gray-500">→</div>
-
-                <div className="p-4 border border-gray-700 rounded-lg">
-                  Power BI
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-        ))}
+        </div>
 
       </section>
 
-      {/* STACK */}
-      <section className="py-28 border-t border-gray-800 text-center">
-        <h2 className="text-3xl font-bold mb-10">Stack Tecnológica</h2>
+      {/* VALOR */}
+      <section className="py-24 bg-gray-900 text-center">
 
-        <p className="text-gray-400 max-w-3xl mx-auto leading-relaxed">
-          Microsoft Fabric, SQL, Oracle, SQL Server, PostgreSQL, MariaDB, Trino,
-          MongoDB, Power BI, Pentaho, Data Warehouse, ETL/ELT, Arquiteturas Cloud,
-          GitHub e metodologias ágeis.
-        </p>
+        <h2 className="text-3xl font-bold mb-12">
+          Quanto valor eu gero
+        </h2>
+
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto px-6">
+
+          <div>
+            <h3 className="text-4xl font-bold">+40%</h3>
+            <p className="text-gray-400 mt-2">Melhoria de performance</p>
+          </div>
+
+          <div>
+            <h3 className="text-4xl font-bold">-30%</h3>
+            <p className="text-gray-400 mt-2">Redução de custo operacional</p>
+          </div>
+
+          <div>
+            <h3 className="text-4xl font-bold">+5x</h3>
+            <p className="text-gray-400 mt-2">Velocidade de processamento</p>
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* SERVIÇOS */}
+      <section id="services" className="py-28 px-6 max-w-6xl mx-auto">
+
+        <h2 className="text-3xl font-bold mb-16 text-center">
+          Serviços de Consultoria
+        </h2>
+
+        <div className="grid md:grid-cols-3 gap-8">
+
+          <div className="p-6 border border-gray-800 rounded-2xl">
+            <h3 className="font-bold mb-4">Arquitetura de Dados</h3>
+            <p className="text-gray-400 text-sm">
+              Estruturação completa da sua plataforma de dados com Microsoft Fabric e Cloud.
+            </p>
+          </div>
+
+          <div className="p-6 border border-gray-800 rounded-2xl">
+            <h3 className="font-bold mb-4">Data Warehouse</h3>
+            <p className="text-gray-400 text-sm">
+              Modelagem dimensional e otimização SQL para analytics.
+            </p>
+          </div>
+
+          <div className="p-6 border border-gray-800 rounded-2xl">
+            <h3 className="font-bold mb-4">Pipelines & Integração</h3>
+            <p className="text-gray-400 text-sm">
+              Construção de pipelines ETL/ELT escaláveis e confiáveis.
+            </p>
+          </div>
+
+        </div>
+
       </section>
 
       {/* CTA */}
       <section className="py-28 text-center">
+
         <h2 className="text-4xl font-bold mb-6">
-          Vamos construir sua plataforma de dados
+          Vamos construir sua solução de dados
         </h2>
 
         <p className="text-gray-400 mb-8">
-          Consultoria em Engenharia de Dados, BI e Arquitetura Cloud
+          Entre em contato e leve sua plataforma de dados para o próximo nível
         </p>
 
         <a
@@ -178,6 +159,7 @@ export default function Home() {
         >
           Falar comigo
         </a>
+
       </section>
 
       <footer className="text-center py-10 text-gray-600 text-sm">
