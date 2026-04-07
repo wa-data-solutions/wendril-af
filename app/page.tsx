@@ -11,6 +11,24 @@ const clients = [
   "TJ-CE",
 ];
 
+const cases = [
+  {
+    title: "Redução de 70% no tempo de geração de relatórios",
+    description:
+      "Reestruturação completa da pipeline de dados, eliminando gargalos e reduzindo drasticamente o tempo de processamento.",
+  },
+  {
+    title: "Centralização de múltiplas fontes de dados",
+    description:
+      "Integração de sistemas distintos em uma única arquitetura confiável e escalável.",
+  },
+  {
+    title: "Tomada de decisão em tempo real",
+    description:
+      "Implantação de dashboards analíticos que permitiram decisões estratégicas imediatas.",
+  },
+];
+
 export default function Home() {
   return (
     <main className="bg-black text-white">
@@ -33,7 +51,7 @@ export default function Home() {
 
         <a
           href="#diagnostico"
-          className="mt-10 px-8 py-3 bg-white text-black rounded-full font-medium"
+          className="mt-10 px-8 py-3 bg-white text-black rounded-full font-medium hover:scale-105 transition"
         >
           Solicitar diagnóstico gratuito
         </a>
@@ -53,6 +71,30 @@ export default function Home() {
             </span>
           ))}
         </div>
+      </section>
+
+      {/* CASES */}
+      <section className="py-32 text-center max-w-5xl mx-auto px-6">
+
+        <h2 className="text-3xl font-bold mb-16">
+          Resultados reais que já entreguei
+        </h2>
+
+        <div className="grid md:grid-cols-3 gap-10">
+          {cases.map((c, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.2 }}
+              className="border border-gray-800 p-6 rounded-2xl bg-black hover:bg-gray-900 transition"
+            >
+              <h3 className="font-semibold mb-4">{c.title}</h3>
+              <p className="text-gray-400 text-sm">{c.description}</p>
+            </motion.div>
+          ))}
+        </div>
+
       </section>
 
       {/* DOR */}
@@ -100,9 +142,9 @@ export default function Home() {
         </p>
 
         <a
-          href="https://cal.com" // depois você troca
+          href="https://www.linkedin.com/in/seu-linkedin-aqui/"
           target="_blank"
-          className="px-10 py-4 bg-white text-black rounded-full font-medium"
+          className="px-10 py-4 bg-white text-black rounded-full font-medium hover:scale-105 transition"
         >
           Agendar conversa
         </a>
