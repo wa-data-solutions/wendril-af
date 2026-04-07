@@ -4,69 +4,99 @@ import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <main className="bg-black text-white scroll-smooth">
+    <main className="bg-black text-white">
 
       {/* HERO */}
-      <section className="min-h-screen flex flex-col justify-center items-center text-center px-6 relative overflow-hidden">
-        <div className="absolute w-[500px] h-[500px] bg-purple-600 opacity-20 blur-3xl rounded-full"></div>
-
-        <motion.h1 
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-5xl md:text-7xl font-bold z-10"
-        >
+      <section className="min-h-screen flex flex-col justify-center items-center text-center px-6">
+        <h1 className="text-5xl md:text-7xl font-bold">
           Wendril Ferreira
-        </motion.h1>
+        </h1>
 
-        <motion.p 
-          initial={{ opacity: 0, y: 60 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mt-6 text-gray-400 max-w-xl z-10"
-        >
-          Engenheiro de Dados especialista em pipelines escaláveis, Data Warehouse e arquitetura cloud.
-        </motion.p>
+        <p className="mt-6 text-gray-400 max-w-2xl">
+          Engenheiro de Dados especializado em Microsoft Fabric, SQL e arquiteturas modernas de dados.
+        </p>
 
-        <motion.a
+        <a
           href="#projects"
-          whileHover={{ scale: 1.05 }}
-          className="mt-8 border px-6 py-3 rounded-full hover:bg-white hover:text-black transition z-10"
+          className="mt-8 border px-6 py-3 rounded-full hover:bg-white hover:text-black transition"
         >
           Ver Projetos
-        </motion.a>
+        </a>
       </section>
 
       {/* SOBRE */}
       <section className="py-24 px-6 max-w-5xl mx-auto">
         <h2 className="text-3xl font-bold mb-6">Sobre</h2>
         <p className="text-gray-400 leading-relaxed">
-          Atuo como Engenheiro de Dados com foco em construção de pipelines robustos,
-          modelagem de dados e soluções analíticas escaláveis. Experiência com Airflow,
-          MongoDB, Data Warehouse e tecnologias modernas como Microsoft Fabric.
+          Atuação em engenharia de dados, BI e arquitetura cloud, com foco em performance,
+          governança e escalabilidade utilizando Microsoft Fabric e SQL.
+        </p>
+      </section>
+
+      {/* CLIENTES */}
+      <section className="py-24 px-6 bg-gray-900">
+        <h2 className="text-3xl font-bold text-center mb-12">
+          Empresas & Clientes
+        </h2>
+
+        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-5 gap-8 items-center">
+
+          <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Brasao_do_Rio_Grande_do_Sul.svg" className="mx-auto h-16 opacity-80 hover:opacity-100" />
+
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Detran-SP_logo.png" className="mx-auto h-16 opacity-80 hover:opacity-100" />
+
+          <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/CDHU_logo.png" className="mx-auto h-16 opacity-80 hover:opacity-100" />
+
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Tribunal_de_Justi%C3%A7a_do_Cear%C3%A1_logo.png" className="mx-auto h-16 opacity-80 hover:opacity-100" />
+
+          <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Sesi_Senai_logo.png" className="mx-auto h-16 opacity-80 hover:opacity-100" />
+
+        </div>
+
+        <p className="text-center text-gray-500 text-sm mt-6">
+          Experiência em projetos de dados em órgãos públicos e instituições de grande porte.
         </p>
       </section>
 
       {/* STACK */}
-      <section className="py-24 bg-gradient-to-b from-black to-gray-900">
-        <h2 className="text-3xl font-bold text-center mb-10">Stack</h2>
+      <section className="py-24">
+        <h2 className="text-3xl font-bold text-center mb-12">Stack Tecnológica</h2>
 
-        <div className="flex flex-wrap justify-center gap-4 px-6">
-          {[
-            "Python",
-            "SQL",
-            "Airflow",
-            "MongoDB",
-            "Databricks",
-            "Microsoft Fabric",
-            "Power BI",
-            "AWS",
-          ].map((tech) => (
-            <div
-              key={tech}
-              className="px-5 py-2 border border-gray-700 rounded-full hover:border-white transition"
-            >
-              {tech}
-            </div>
-          ))}
+        <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 px-6">
+
+          <div>
+            <h3 className="font-bold mb-4">Data Platform</h3>
+            <ul className="text-gray-400 space-y-2">
+              <li>Microsoft Fabric</li>
+              <li>Power BI</li>
+              <li>Pentaho</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-bold mb-4">Bancos de Dados</h3>
+            <ul className="text-gray-400 space-y-2">
+              <li>SQL</li>
+              <li>Oracle</li>
+              <li>SQL Server</li>
+              <li>PostgreSQL</li>
+              <li>MariaDB</li>
+              <li>Trino</li>
+              <li>MongoDB</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-bold mb-4">Engenharia & Cloud</h3>
+            <ul className="text-gray-400 space-y-2">
+              <li>ETL / ELT</li>
+              <li>Data Warehouse</li>
+              <li>Arquitetura Cloud</li>
+              <li>GitHub</li>
+              <li>Metodologias Ágeis</li>
+            </ul>
+          </div>
+
         </div>
       </section>
 
@@ -76,65 +106,49 @@ export default function Home() {
 
         <div className="grid md:grid-cols-3 gap-8">
 
-          {[
-            {
-              title: "Pipeline de Dados (Airflow)",
-              desc: "Orquestração de pipelines ETL com monitoramento e escalabilidade.",
-            },
-            {
-              title: "Data Warehouse Corporativo",
-              desc: "Modelagem dimensional com ingestão de múltiplas fontes.",
-            },
-            {
-              title: "Analytics com Power BI",
-              desc: "Dashboards estratégicos para tomada de decisão.",
-            },
-          ].map((project, i) => (
-            <motion.div
-              key={i}
-              whileHover={{ y: -10 }}
-              className="p-6 border border-gray-800 rounded-2xl bg-gradient-to-b from-gray-900 to-black hover:border-white transition"
-            >
-              <h3 className="text-xl font-bold mb-3">{project.title}</h3>
-              <p className="text-gray-400 text-sm">{project.desc}</p>
-            </motion.div>
-          ))}
+          <div className="p-6 border border-gray-800 rounded-2xl">
+            <h3 className="text-xl font-bold mb-3">Microsoft Fabric</h3>
+            <p className="text-gray-400 text-sm">
+              Plataforma de dados com Lakehouse e analytics integrado.
+            </p>
+          </div>
+
+          <div className="p-6 border border-gray-800 rounded-2xl">
+            <h3 className="text-xl font-bold mb-3">Data Warehouse</h3>
+            <p className="text-gray-400 text-sm">
+              Modelagem dimensional e otimização SQL.
+            </p>
+          </div>
+
+          <div className="p-6 border border-gray-800 rounded-2xl">
+            <h3 className="text-xl font-bold mb-3">Pipelines ETL</h3>
+            <p className="text-gray-400 text-sm">
+              Integração e transformação de dados escaláveis.
+            </p>
+          </div>
+
         </div>
       </section>
 
-      {/* DIFERENCIAL */}
-      <section className="py-24 px-6 bg-gray-900 text-center">
-        <h2 className="text-3xl font-bold mb-6">Diferencial</h2>
-
-        <p className="text-gray-400 max-w-3xl mx-auto">
-          Construo soluções de dados com foco em performance, governança e escalabilidade.
-          Minha abordagem combina engenharia, negócio e visão estratégica — não apenas código.
-        </p>
-      </section>
-
-      {/* CTA FINAL */}
+      {/* CTA */}
       <section className="py-24 px-6 text-center">
         <h2 className="text-4xl font-bold mb-6">
-          Vamos construir algo grande juntos
+          Vamos transformar dados em valor
         </h2>
-
-        <p className="text-gray-400 mb-8">
-          Disponível para oportunidades como Engenheiro de Dados, BI e Cloud.
-        </p>
 
         <a
           href="https://www.linkedin.com/in/wendril-ferreira/"
           target="_blank"
-          className="px-8 py-3 bg-white text-black rounded-full font-semibold hover:opacity-80 transition"
+          className="px-8 py-3 bg-white text-black rounded-full"
         >
           Falar comigo
         </a>
       </section>
 
-      {/* FOOTER */}
       <footer className="text-center py-10 text-gray-600 text-sm">
         © 2026 Wendril Ferreira
       </footer>
+
     </main>
   );
 }
