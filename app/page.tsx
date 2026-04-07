@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 const clients = [
   "CAU-SP",
@@ -30,17 +31,32 @@ const cases = [
 ];
 
 export default function Home() {
+  const ref1 = useRef(null);
+  const ref2 = useRef(null);
+
+  const { scrollYProgress: progress1 } = useScroll({
+    target: ref1,
+    offset: ["start center", "end center"],
+  });
+
+  const { scrollYProgress: progress2 } = useScroll({
+    target: ref2,
+    offset: ["start center", "end center"],
+  });
+
+  const x1 = useTransform(progress1, [0, 1], ["0%", "100%"]);
+  const x2 = useTransform(progress2, [0, 1], ["0%", "100%"]);
+
   return (
     <main className="bg-black text-white">
 
       {/* HERO */}
       <section className="min-h-screen flex flex-col justify-center items-center text-center px-6">
-
         <p className="text-xs tracking-[0.4em] text-gray-500 mb-6">
           WENDRIL.AF
         </p>
 
-        <h1 className="text-5xl md:text-7xl font-bold max-w-4xl">
+        <h1 className="text-5xl md:text-7xl font-bold max-w-4xl leading-tight">
           Seus dados estão te atrasando.
         </h1>
 
@@ -55,7 +71,6 @@ export default function Home() {
         >
           Solicitar diagnóstico gratuito
         </a>
-
       </section>
 
       {/* PROVA */}
@@ -73,9 +88,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CASES */}
+      {/* CASES RESUMO */}
       <section className="py-32 text-center max-w-5xl mx-auto px-6">
-
         <h2 className="text-3xl font-bold mb-16">
           Resultados reais que já entreguei
         </h2>
@@ -94,12 +108,10 @@ export default function Home() {
             </motion.div>
           ))}
         </div>
-
       </section>
 
       {/* DOR */}
       <section className="py-32 text-center max-w-4xl mx-auto px-6">
-
         <h2 className="text-3xl font-bold mb-10">
           Se você se identifica com isso, você tem um problema de dados
         </h2>
@@ -110,55 +122,42 @@ export default function Home() {
           <p>• Falta de confiança nas informações</p>
           <p>• Alto custo operacional com dados</p>
         </div>
-
       </section>
 
       {/* SOLUÇÃO */}
       <section className="py-32 bg-gray-900 text-center px-6">
-
         <h2 className="text-3xl font-bold mb-12">
           Como eu resolvo isso
         </h2>
 
         <div className="max-w-4xl mx-auto text-gray-400 space-y-6">
           <p>Centralização de dados em arquitetura moderna</p>
-          <p>Automação de pipelines e ingestão</p>
-          <p>Modelagem analítica para tomada de decisão</p>
-          <p>Entrega pronta para consumo no Power BI</p>
+          <p>Automação de pipelines</p>
+          <p>Modelagem analítica</p>
+          <p>Entrega pronta para Power BI</p>
         </div>
-
       </section>
 
-      {/* ================= CASE 1 ================= */}
+      {/* CASE 1 */}
       <section ref={ref1} className="py-32 px-6 max-w-6xl mx-auto">
-
         <h2 className="text-3xl font-bold mb-6">
           Plataforma de Dados Multisource
         </h2>
 
         <p className="text-gray-400 mb-12 max-w-3xl">
-          Integração de múltiplas fontes com Pentaho, consolidação em Data Warehouse
-          e disponibilização via Microsoft Fabric para consumo analítico em Power BI.
+          Integração com Pentaho + Data Warehouse + Microsoft Fabric + Power BI.
         </p>
 
         <div className="relative">
-
           <div className="flex flex-wrap md:flex-nowrap justify-between gap-6 text-center">
-            {[
-              "Fontes",
-              "ETL",
-              "DW",
-              "Data Marts",
-              "Fabric",
-              "Power BI",
-            ].map((step, i) => (
+            {["Fontes","ETL","DW","Data Marts","Fabric","Power BI"].map((step, i) => (
               <div key={i} className="w-40 p-4 bg-white/5 border border-gray-800 rounded-xl">
                 {step}
               </div>
             ))}
           </div>
 
-          <div className="hidden md:block absolute top-[80px] left-0 right-0 h-[2px] bg-gray-800"></div>
+          <div className="hidden md:block absolute top-[80px] left-0 right-0 h-[2px] bg-gray-800" />
 
           <motion.div
             style={{ scaleX: progress1 }}
@@ -171,40 +170,29 @@ export default function Home() {
           >
             ➜
           </motion.div>
-
         </div>
-
       </section>
 
-      {/* ================= CASE 2 ================= */}
+      {/* CASE 2 */}
       <section ref={ref2} className="py-32 px-6 max-w-6xl mx-auto">
-
         <h2 className="text-3xl font-bold mb-6">
           Arquitetura Moderna com Microsoft Fabric
         </h2>
 
         <p className="text-gray-400 mb-12 max-w-3xl">
-          Ingestão via Dataverse, armazenamento em Lakehouse e modelagem analítica
-          para consumo direto em Power BI.
+          Dataverse → Lakehouse → DW → Power BI.
         </p>
 
         <div className="relative">
-
           <div className="flex flex-wrap md:flex-nowrap justify-between gap-6 text-center">
-            {[
-              "Dataverse",
-              "Ingestão",
-              "Lakehouse",
-              "DW",
-              "Power BI",
-            ].map((step, i) => (
+            {["Dataverse","Ingestão","Lakehouse","DW","Power BI"].map((step, i) => (
               <div key={i} className="w-40 p-4 bg-white/5 border border-gray-800 rounded-xl">
                 {step}
               </div>
             ))}
           </div>
 
-          <div className="hidden md:block absolute top-[80px] left-0 right-0 h-[2px] bg-gray-800"></div>
+          <div className="hidden md:block absolute top-[80px] left-0 right-0 h-[2px] bg-gray-800" />
 
           <motion.div
             style={{ scaleX: progress2 }}
@@ -217,19 +205,17 @@ export default function Home() {
           >
             ➜
           </motion.div>
-
         </div>
+      </section>
 
-      {/* CTA PRINCIPAL */}
+      {/* CTA */}
       <section id="diagnostico" className="py-32 text-center">
-
         <h2 className="text-4xl font-bold mb-6">
           Diagnóstico gratuito da sua arquitetura de dados
         </h2>
 
         <p className="text-gray-400 mb-10 max-w-xl mx-auto">
-          Em uma conversa de 30 minutos, vou identificar gargalos, riscos e oportunidades
-          na sua plataforma de dados.
+          Em 30 minutos, identifico gargalos e oportunidades.
         </p>
 
         <a
@@ -239,7 +225,6 @@ export default function Home() {
         >
           Agendar conversa
         </a>
-
       </section>
 
       {/* URGÊNCIA */}
