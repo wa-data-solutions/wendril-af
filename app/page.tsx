@@ -30,27 +30,50 @@ export default function Home() {
         </p>
       </section>
 
-      {/* CLIENTES */}
-<section className="py-20 text-center border-t border-gray-800">
+import { motion } from "framer-motion";
 
-  <h3 className="text-sm tracking-widest text-gray-500 mb-4">
-    EXPERIÊNCIA PROFISSIONAL
-  </h3>
+{/* CLIENTES */}
+<section className="py-28 text-center border-t border-gray-800">
 
-  <h2 className="text-2xl md:text-3xl font-semibold mb-8">
-    Empresas por onde atuei
-  </h2>
+  <motion.div
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8 }}
+    viewport={{ once: true }}
+  >
 
-  <div className="flex flex-wrap justify-center gap-6 text-gray-400 text-sm tracking-widest">
-    {clients.map((c, i) => (
-      <span
-        key={i}
-        className="hover:text-white transition"
-      >
-        {c}
-      </span>
-    ))}
-  </div>
+    {/* LABEL */}
+    <p className="text-xs tracking-[0.3em] text-gray-500 mb-4">
+      EXPERIÊNCIA PROFISSIONAL
+    </p>
+
+    {/* TÍTULO */}
+    <h2 className="text-2xl md:text-3xl font-semibold mb-12 bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text text-transparent">
+      Organizações que confiaram no meu trabalho
+    </h2>
+
+    {/* LISTA */}
+    <div className="flex flex-wrap justify-center gap-10 max-w-4xl mx-auto">
+
+      {clients.map((c, i) => (
+        <motion.span
+          key={i}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: i * 0.1 }}
+          viewport={{ once: true }}
+          className="text-gray-500 text-sm tracking-widest hover:text-white transition duration-300 cursor-default relative"
+        >
+          {c}
+
+          {/* glow sutil */}
+          <span className="absolute inset-0 blur-md opacity-0 hover:opacity-30 bg-white transition"></span>
+        </motion.span>
+      ))}
+
+    </div>
+
+  </motion.div>
 
 </section>
 
