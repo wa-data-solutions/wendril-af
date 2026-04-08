@@ -227,10 +227,10 @@ export default function Home() {
         </a>
       </section>
 
-      {/* URGÊNCIA */}
+      {/* URGÊNCIA 
       <section className="py-20 text-center text-gray-500">
         <p>Atendo um número limitado de projetos por mês.</p>
-      </section>
+      </section>*/}
 
       <footer className="text-center py-10 text-gray-600 text-sm">
         © 2026 WENDRIL.AF
