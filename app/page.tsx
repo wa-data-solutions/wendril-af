@@ -49,7 +49,6 @@ export default function Home() {
 
   return (
     <main className="bg-black text-white overflow-x-hidden">
-
       {/* HERO */}
       <section className="min-h-screen flex flex-col justify-center items-center text-center px-6">
         <p className="text-xs tracking-[0.4em] text-gray-500 mb-6">
@@ -84,9 +83,9 @@ export default function Home() {
         </h2>
 
         <div className="flex flex-wrap justify-center gap-10">
-          {clients.map((c, i) => (
+          {clients.map((c) => (
             <span
-              key={i}
+              key={c}
               className="text-gray-500 hover:text-white transition"
             >
               {c}
@@ -102,13 +101,12 @@ export default function Home() {
         </h2>
 
         <div className="grid md:grid-cols-3 gap-8">
-
           <div className="border border-gray-800 rounded-2xl p-6 bg-white/[0.02] hover:bg-white/[0.04] transition">
             <h3 className="text-white mb-4 font-semibold text-lg">
               Data Engineering
             </h3>
             <p className="text-gray-400 leading-relaxed">
-              Pentaho (PDI), Apache Airflow, :contentReference[oaicite:5]{index=5}, ETL/ELT, pipelines de dados
+              Pentaho (PDI), Apache Airflow, Apache Spark, ETL/ELT, pipelines de dados
             </p>
           </div>
 
@@ -153,10 +151,9 @@ export default function Home() {
               Cloud & Dev
             </h3>
             <p className="text-gray-400 leading-relaxed">
-              AWS, Azure, GCP, :contentReference[oaicite:6]{index=6}, GitHub, metodologias ágeis
+              AWS, Azure, GCP, Docker, GitHub, metodologias ágeis
             </p>
           </div>
-
         </div>
       </section>
 
@@ -169,7 +166,7 @@ export default function Home() {
         <div className="grid md:grid-cols-3 gap-10">
           {cases.map((c, i) => (
             <motion.div
-              key={i}
+              key={c.title}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.2 }}
@@ -192,16 +189,18 @@ export default function Home() {
         </h2>
 
         <div className="flex flex-wrap md:flex-nowrap items-center justify-between gap-4 text-center">
-          {["Fontes","ETL","DW","Data Marts","Fabric","Power BI"].map((step, i, arr) => (
-            <div key={step} className="flex items-center gap-4">
-              <div className="w-40 p-4 bg-white/5 border border-gray-800 rounded-xl">
-                {step}
+          {["Fontes", "ETL", "DW", "Data Marts", "Fabric", "Power BI"].map(
+            (step, i, arr) => (
+              <div key={step} className="flex items-center gap-4">
+                <div className="w-40 p-4 bg-white/5 border border-gray-800 rounded-xl">
+                  {step}
+                </div>
+                {i < arr.length - 1 && (
+                  <span className="text-gray-500 text-xl">→</span>
+                )}
               </div>
-              {i < arr.length - 1 && (
-                <span className="text-gray-500 text-xl">→</span>
-              )}
-            </div>
-          ))}
+            )
+          )}
         </div>
       </section>
 
@@ -212,16 +211,18 @@ export default function Home() {
         </h2>
 
         <div className="flex flex-wrap md:flex-nowrap items-center justify-between gap-4 text-center">
-          {["Dataverse","Ingestão","Lakehouse","DW","Power BI"].map((step, i, arr) => (
-            <div key={step} className="flex items-center gap-4">
-              <div className="w-40 p-4 bg-white/5 border border-gray-800 rounded-xl">
-                {step}
+          {["Dataverse", "Ingestão", "Lakehouse", "DW", "Power BI"].map(
+            (step, i, arr) => (
+              <div key={step} className="flex items-center gap-4">
+                <div className="w-40 p-4 bg-white/5 border border-gray-800 rounded-xl">
+                  {step}
+                </div>
+                {i < arr.length - 1 && (
+                  <span className="text-gray-500 text-xl">→</span>
+                )}
               </div>
-              {i < arr.length - 1 && (
-                <span className="text-gray-500 text-xl">→</span>
-              )}
-            </div>
-          ))}
+            )
+          )}
         </div>
       </section>
 
@@ -248,7 +249,6 @@ export default function Home() {
       <footer className="text-center py-10 text-gray-600 text-sm">
         © 2026 WENDRIL ARAUJO FERREIRA
       </footer>
-
     </main>
   );
 }
