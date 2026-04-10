@@ -48,7 +48,7 @@ export default function Home() {
   const x2 = useTransform(progress2, [0, 1], ["0%", "100%"]);
 
   return (
-    <main className="bg-black text-white">
+    <main className="bg-black text-white overflow-x-hidden">
 
       {/* HERO */}
       <section className="min-h-screen flex flex-col justify-center items-center text-center px-6">
@@ -60,9 +60,9 @@ export default function Home() {
           Seus dados estão te atrasando.
         </h1>
 
-        <p className="mt-6 text-gray-400 max-w-xl text-lg">
+        <p className="mt-6 text-gray-400 max-w-xl text-lg leading-relaxed">
           Engenheiro de Dados especializado em Microsoft Fabric, SQL e pipelines modernos.
-          Estruturo plataformas que reduzem custo e aceleram decisões.
+          Estruturo plataformas que reduzem custo, eliminam gargalos e aceleram decisões.
         </p>
 
         <a
@@ -75,13 +75,20 @@ export default function Home() {
 
       {/* CLIENTES */}
       <section className="py-24 text-center border-t border-gray-800">
-        <p className="text-gray-500 mb-10">
-          Experiência em ambientes críticos
+        <p className="text-gray-500 mb-4 tracking-[0.2em] text-sm">
+          EXPERIÊNCIA EM AMBIENTES CRÍTICOS
         </p>
+
+        <h2 className="text-2xl md:text-3xl font-semibold mb-10">
+          Empresas por onde atuei
+        </h2>
 
         <div className="flex flex-wrap justify-center gap-10">
           {clients.map((c, i) => (
-            <span key={i} className="text-gray-500">
+            <span
+              key={i}
+              className="text-gray-500 hover:text-white transition"
+            >
               {c}
             </span>
           ))}
@@ -90,40 +97,64 @@ export default function Home() {
 
       {/* STACK */}
       <section className="py-32 max-w-6xl mx-auto px-6">
-        <h2 className="text-3xl font-bold mb-16 text-center">
+        <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center">
           Stack Tecnológica
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-10 text-gray-400">
+        <div className="grid md:grid-cols-3 gap-8">
 
-          <div>
-            <h3 className="text-white mb-4 font-semibold">Data Engineering</h3>
-            <p>Pentaho (PDI), Apache Airflow, ETL/ELT, Pipelines</p>
+          <div className="border border-gray-800 rounded-2xl p-6 bg-white/[0.02] hover:bg-white/[0.04] transition">
+            <h3 className="text-white mb-4 font-semibold text-lg">
+              Data Engineering
+            </h3>
+            <p className="text-gray-400 leading-relaxed">
+              Pentaho (PDI), Apache Airflow, :contentReference[oaicite:5]{index=5}, ETL/ELT, pipelines de dados
+            </p>
           </div>
 
-          <div>
-            <h3 className="text-white mb-4 font-semibold">Bancos de Dados</h3>
-            <p>Oracle, PostgreSQL, SQL Server, MongoDB</p>
+          <div className="border border-gray-800 rounded-2xl p-6 bg-white/[0.02] hover:bg-white/[0.04] transition">
+            <h3 className="text-white mb-4 font-semibold text-lg">
+              Bancos de Dados
+            </h3>
+            <p className="text-gray-400 leading-relaxed">
+              Oracle, PostgreSQL, SQL Server, MongoDB
+            </p>
           </div>
 
-          <div>
-            <h3 className="text-white mb-4 font-semibold">Analytics & BI</h3>
-            <p>Power BI, Microsoft Fabric, Dataflows, Lakehouse</p>
+          <div className="border border-gray-800 rounded-2xl p-6 bg-white/[0.02] hover:bg-white/[0.04] transition">
+            <h3 className="text-white mb-4 font-semibold text-lg">
+              Analytics & BI
+            </h3>
+            <p className="text-gray-400 leading-relaxed">
+              Power BI, Microsoft Fabric, Dataflows, Lakehouse
+            </p>
           </div>
 
-          <div>
-            <h3 className="text-white mb-4 font-semibold">Arquitetura</h3>
-            <p>Data Warehouse, Star Schema, Snowflake, Lakehouse</p>
+          <div className="border border-gray-800 rounded-2xl p-6 bg-white/[0.02] hover:bg-white/[0.04] transition">
+            <h3 className="text-white mb-4 font-semibold text-lg">
+              Arquitetura de Dados
+            </h3>
+            <p className="text-gray-400 leading-relaxed">
+              Data Warehouse, Star Schema, Snowflake, Lakehouse
+            </p>
           </div>
 
-          <div>
-            <h3 className="text-white mb-4 font-semibold">Observabilidade</h3>
-            <p>Datadog, Monitoramento de pipelines</p>
+          <div className="border border-gray-800 rounded-2xl p-6 bg-white/[0.02] hover:bg-white/[0.04] transition">
+            <h3 className="text-white mb-4 font-semibold text-lg">
+              Observabilidade
+            </h3>
+            <p className="text-gray-400 leading-relaxed">
+              Datadog, monitoramento de pipelines
+            </p>
           </div>
 
-          <div>
-            <h3 className="text-white mb-4 font-semibold">Cloud & Dev</h3>
-            <p>AWS, Azure, GCP, GitHub, Metodologias Ágeis</p>
+          <div className="border border-gray-800 rounded-2xl p-6 bg-white/[0.02] hover:bg-white/[0.04] transition">
+            <h3 className="text-white mb-4 font-semibold text-lg">
+              Cloud & Dev
+            </h3>
+            <p className="text-gray-400 leading-relaxed">
+              AWS, Azure, GCP, :contentReference[oaicite:6]{index=6}, GitHub, metodologias ágeis
+            </p>
           </div>
 
         </div>
@@ -131,8 +162,8 @@ export default function Home() {
 
       {/* CASES */}
       <section className="py-32 text-center max-w-5xl mx-auto px-6">
-        <h2 className="text-3xl font-bold mb-16">
-          Resultados reais que já entreguei
+        <h2 className="text-3xl md:text-4xl font-bold mb-16">
+          Cases de sucesso e resultados entregues
         </h2>
 
         <div className="grid md:grid-cols-3 gap-10">
@@ -142,10 +173,13 @@ export default function Home() {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.2 }}
+              viewport={{ once: true }}
               className="border border-gray-800 p-6 rounded-2xl hover:bg-gray-900 transition"
             >
               <h3 className="font-semibold mb-4">{c.title}</h3>
-              <p className="text-gray-400 text-sm">{c.description}</p>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                {c.description}
+              </p>
             </motion.div>
           ))}
         </div>
@@ -159,12 +193,14 @@ export default function Home() {
 
         <div className="flex flex-wrap md:flex-nowrap items-center justify-between gap-4 text-center">
           {["Fontes","ETL","DW","Data Marts","Fabric","Power BI"].map((step, i, arr) => (
-            <>
+            <div key={step} className="flex items-center gap-4">
               <div className="w-40 p-4 bg-white/5 border border-gray-800 rounded-xl">
                 {step}
               </div>
-              {i < arr.length - 1 && <span className="text-gray-500">→</span>}
-            </>
+              {i < arr.length - 1 && (
+                <span className="text-gray-500 text-xl">→</span>
+              )}
+            </div>
           ))}
         </div>
       </section>
@@ -177,12 +213,14 @@ export default function Home() {
 
         <div className="flex flex-wrap md:flex-nowrap items-center justify-between gap-4 text-center">
           {["Dataverse","Ingestão","Lakehouse","DW","Power BI"].map((step, i, arr) => (
-            <>
+            <div key={step} className="flex items-center gap-4">
               <div className="w-40 p-4 bg-white/5 border border-gray-800 rounded-xl">
                 {step}
               </div>
-              {i < arr.length - 1 && <span className="text-gray-500">→</span>}
-            </>
+              {i < arr.length - 1 && (
+                <span className="text-gray-500 text-xl">→</span>
+              )}
+            </div>
           ))}
         </div>
       </section>
@@ -193,14 +231,23 @@ export default function Home() {
           Diagnóstico gratuito da sua arquitetura de dados
         </h2>
 
+        <p className="text-gray-400 mb-10 max-w-xl mx-auto">
+          Em uma conversa rápida, identifico gargalos e oportunidades para sua operação de dados evoluir.
+        </p>
+
         <a
           href="https://www.linkedin.com/in/wendril-ferreira/"
           target="_blank"
-          className="px-10 py-4 bg-white text-black rounded-full"
+          rel="noreferrer"
+          className="px-10 py-4 bg-white text-black rounded-full hover:scale-105 transition"
         >
           Agendar conversa
         </a>
       </section>
+
+      <footer className="text-center py-10 text-gray-600 text-sm">
+        © 2026 WENDRIL ARAUJO FERREIRA
+      </footer>
 
     </main>
   );
